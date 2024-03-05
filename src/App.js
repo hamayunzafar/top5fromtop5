@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './App.css'
+import './App.css';
+import {Navbar} from './components/Navbar.js';
 
 const TopTracksGenerator = () => {
   const [albumNames, setAlbumNames] = useState(['']); // Start with one input field
@@ -99,37 +100,46 @@ const TopTracksGenerator = () => {
     });
   };
 
+  //Modal functions
+  const [showModal, setShowModal] = useState(true); // Start with the modal open
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
-      <span className='topHeader'>Enter your albums, get their top tracks in a Spotify playlist!</span>
-      <div className='input-container'>
-      {albumNames.map((name, index) => (
-            <input
-              className='album_inputs'
-              type="text"
-              value={name}
-              placeholder={`Album Name #${index + 1}`}
-              onChange={(e) => handleAlbumNameChange(index, e)}
-            />
-      ))}
-      </div>
-      <div className='button-containers'>
-        <button className='buttons' onClick={addAlbumInput}>Add Album</button>
-        <button className='buttons' onClick={generateTopTracks}>Generate Top Tracks</button>
-      </div>
-      {topTracks.length > 0 && (
-        <>
-        <div className='uri-container'>
-          <div className='headerAndButton'>
-            <span>Copy the code, paste in an empty or filled spotify</span>
-            <button className='buttons' onClick={copyPlaylist}>Copy Playlist</button>
-          </div>
-          {topTracks.map((trackURI, index) => (
-            <div className='trackURIs' key={index}>{trackURI}</div>
-          ))}
+      <Navbar />
+      <div className='main-content'>
+        <span className='topHeader'>Enter your albums, get their top tracks in a Spotify playlist!</span>
+        <div className='input-container'>
+        {albumNames.map((name, index) => (
+              <input
+                className='album_inputs'
+                type="text"
+                value={name}
+                placeholder={`Album Name #${index + 1}`}
+                onChange={(e) => handleAlbumNameChange(index, e)}
+              />
+        ))}
         </div>
-        </>
-      )}
+        <div className='button-containers'>
+          <button className='buttons' onClick={addAlbumInput}>Add Album</button>
+          <button className='buttons' onClick={generateTopTracks}>Generate Top Tracks</button>
+        </div>
+        {topTracks.length > 0 && (
+          <>
+          <div className='uri-container'>
+            <div className='headerAndButton'>
+              <span>Copy the code, paste in an empty or filled spotify</span>
+              <button className='buttons' onClick={copyPlaylist}>Copy Playlist</button>
+            </div>
+            {topTracks.map((trackURI, index) => (
+              <div className='trackURIs' key={index}>{trackURI}</div>
+            ))}
+          </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
