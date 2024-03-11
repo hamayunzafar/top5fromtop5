@@ -18,13 +18,17 @@ export const TopTracksGenerator = () => {
 
   const fetchWeeklyAlbums = async () => {
     try {
-      const response = await axios.post('/api', {
-        collection: "Top 5 Weekly Albums",
-        database: "top5fromtop5",
-        dataSource: "top5fromtop5",
-        projection: {"album_name": 1}
+      const response = await axios.post('/api/mongodb_proxy', {
+        action: 'find',  // Use the correct action as per your MongoDB function
+        data: {
+          collection: "Top 5 Weekly Albums",
+          database: "top5fromtop5",
+          dataSource: "top5fromtop5",
+          projection: {"album_name": 1}
+        }
       });
   
+      // Assuming the response format from your serverless function matches this
       const albumNames = response.data.documents.map(doc => doc.album_name);
       setAlbumNames(albumNames);
   
@@ -34,6 +38,7 @@ export const TopTracksGenerator = () => {
       console.error('Error fetching weekly albums:', error);
     }
   };
+  
 
   const addAlbumInput = () => {
     setAlbumNames([...albumNames, '']); // Add a new input field
