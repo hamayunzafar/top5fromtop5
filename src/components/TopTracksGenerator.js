@@ -39,17 +39,10 @@ export const TopTracksGenerator = () => {
     setAlbumNames([...albumNames, '']); // Add a new input field
   };
   
-  const fetchAccessToken = async (clientId, clientSecret) => {
+  const fetchAccessToken = async () => {
     try {
-      const response = await axios.post('https://accounts.spotify.com/api/token', null, {
-        params: {
-          grant_type: 'client_credentials',
-        },
-        headers: {
-          Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-        },
-      });
-      return response.data.access_token;
+      const response = await axios.get('/api/spotify_auth');
+      return response.data.accessToken;
     } catch (error) {
       console.error('Error fetching access token:', error);
       return null;
