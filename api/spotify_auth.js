@@ -1,7 +1,8 @@
 const axios = require('axios');
 
 module.exports = async (req, res) => {
-  const { clientId, clientSecret } = process.env;
+  const clientId = process.env.CLIENT_ID;      // Ensure these are correctly named as per your Vercel environment variables
+  const clientSecret = process.env.CLIENT_SECRET;
 
   try {
     const authResponse = await axios({
@@ -10,13 +11,14 @@ module.exports = async (req, res) => {
       data: 'grant_type=client_credentials',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64'))
+        'Authorization': 'Basic ' + Buffer.from(clientId + ':' + clientSecret).toString('base64')
       },
     });
 
     const accessToken = authResponse.data.access_token;
-    return res.status(200).json({ accessToken });
+    res.status(200).json({ accessToken });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    console.error('Error making the request:', error);
+    res.status(500).json({ error: error.message });
   }
 };
