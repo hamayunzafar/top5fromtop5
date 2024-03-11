@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
       headers: {
         'Content-Type': 'application/json',
         'api-key': process.env.MONGODB_API_KEY, // Make sure to set this in your Vercel environment variables
-        ...req.headers, // Forward any additional headers
+        'Access-Control-Request-Headers' : '*', // Forward any additional headers
       },
       data: req.body.data,
     });
