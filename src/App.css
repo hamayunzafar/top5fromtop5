@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -11,6 +12,14 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+body {
+  padding: 20px;
+  font-family: 'DM Sans' !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Navbar.css */
@@ -34,7 +43,7 @@
 
 .navbar-logo {
   height: 100%; /* Fill the navbar height */
-  width: auto; /* Adjust width to maintain aspect ratio */
+  width: auto; /* Adjust width to mainftain aspect ratio */
 }
 
 .App-header {
@@ -48,14 +57,6 @@
   color: white;
 }
 
-body {
-  padding: 20px;
-  font-family: satoshi;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .main-content {
   position: relative;
   display: flex;
@@ -66,8 +67,8 @@ body {
 
 .buttons {
   font-size: 12px;
-  font-family: Satoshi;
   font-weight: 600;
+  font-family: 'DM Sans';
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 12px;
@@ -75,6 +76,12 @@ body {
   background-color: rgb(25, 211, 81);
   border-radius: 8px;
   border: none;
+  cursor: pointer;
+}
+
+.buttons:active {
+  background-color: #00a840;
+  transition: .3s;
 }
 
 .globalContainer {
@@ -103,13 +110,19 @@ body {
   right: 0;
   bottom: 0;
   font-size: 14px;
-  font-family: Satoshi;
+  font-family: 'DM Sans';
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 6px;
   border: solid 1px rgb(230, 230, 230);
+}
+
+.album_inputs::placeholder {
+  font-size: 14px;
+  font-family: 'DM Sans';
+  color: rgb(186, 186, 186);
 }
 
 .button-containers {
@@ -122,6 +135,10 @@ body {
   background-color: white;
   color: black;
   border: solid 1px rgb(25, 211, 81);
+}
+
+.button-containers button:first-child:active {
+  background-color: #ececec;
 }
 
 .uri-container {
