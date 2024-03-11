@@ -17,7 +17,6 @@ export const TopTracksGenerator = () => {
   };
 
   const fetchWeeklyAlbums = async () => {
-    
     try {
       const response = await axios.post('/api', {
         collection: "Top 5 Weekly Albums",
@@ -59,8 +58,8 @@ export const TopTracksGenerator = () => {
   
 
   const generateTopTracks = async (inputAlbumNames = albumNames) => {
-    const clientId = '4260bac9f30e4aa8a6b20fafcad25cc1'; // Replace with your actual client ID
-    const clientSecret = 'f6eceb6239b54b3097c4fa06bd145c50'; // Replace with your actual client secret
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID; // Replace with your actual client ID
+    const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET; // Replace with your actual client secret
 
     /* const clientId = process.env.REACT_APP_CLIENT_ID; // Replace with your actual client ID
     const clientSecret = process.env.REACT_APP_SECRET_CLIENT_ID; // Replace with your actual client secret */
