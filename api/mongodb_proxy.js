@@ -16,8 +16,11 @@ module.exports = async (req, res) => {
     });
 
     return res.status(200).json(mongodbResponse.data);
-  } catch (error) {
+    } catch (error) {
     console.error('MongoDB proxy error:', error);
-    return res.status(error.response.status).json({ message: error.message });
+    // Send back a response even when the axios request fails
+    return res.status(error.response?.status || 500).json({
+      message: error.message
+    });
   }
 };
