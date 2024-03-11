@@ -41,7 +41,7 @@ export const TopTracksGenerator = () => {
   
   const fetchAccessToken = async () => {
     try {
-      const response = await axios.get('/api/spotify_auth');
+      const response = await axios.get('/api/spotify_auth ');
       return response.data.accessToken;
     } catch (error) {
       console.error('Error fetching access token:', error);

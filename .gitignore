@@ -19,8 +19,6 @@
 .env.production.local
 
 *.env
-src/setupProxy.js
-src/setupTests.js
 
 #proxy
 npm-debug.log*
