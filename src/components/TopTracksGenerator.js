@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../App.css';
+import fetchAlbumsIcon from '../resources/ic_fetchTopAlbums.svg';
 import { Navbar } from './Navbar.js';
 import {TopAlbumInputs} from './TopAlbumInputs';
 import {TopTracksButton} from './TopTracksButton';
+import { IconButton } from './designElements.js';
 
 export const TopTracksGenerator = () => {
   const [albumNames, setAlbumNames] = useState(['']); // Start with one input field
@@ -58,10 +60,6 @@ export const TopTracksGenerator = () => {
   const generateTopTracks = async (inputAlbumNames = albumNames) => {
     const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID; // Replace with your actual client ID
     const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET; // Replace with your actual client secret
-
-    /* const clientId = process.env.REACT_APP_CLIENT_ID; // Replace with your actual client ID
-    const clientSecret = process.env.REACT_APP_SECRET_CLIENT_ID; // Replace with your actual client secret */
-
 
     // Fetch access token
     const token = await fetchAccessToken(clientId, clientSecret);
@@ -128,16 +126,21 @@ export const TopTracksGenerator = () => {
     <div>
       <Navbar />
       <div className='main-content'>
-        <span className='topHeader'>Enter your albums, get their top tracks in a Spotify playlist!</span>
+        <span className='topHeader'>Quickest way to get top tracks from new top releases this week!</span>
+        
+        <IconButton icon={fetchAlbumsIcon} text="Get This Week's Top Albums" onClick={fetchWeeklyAlbums} />
+
+        <span className='subHeader'>ALBUM INPUTS</span>
+
         <TopAlbumInputs
           albumNames={albumNames}
           handleAlbumNameChange={handleAlbumNameChange}
           addAlbumInput={addAlbumInput}
         />
         <div className='button-containers'>
-          <TopTracksButton onClick={addAlbumInput} label="Add Album" />
           <TopTracksButton onClick={generateTopTracks} label="Generate Top Tracks" />
-          <TopTracksButton onClick={fetchWeeklyAlbums} label="Fetch Weekly Albums" />
+          <TopTracksButton onClick={addAlbumInput} label="Add Album" />
+          {/* <TopTracksButton onClick={fetchWeeklyAlbums} label="Fetch Weekly Albums" /> */}
         </div>
         {topTracks.length > 0 && (
           <>

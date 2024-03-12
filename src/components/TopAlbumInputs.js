@@ -1,5 +1,6 @@
 // TopAlbumInputs.js
 import React from 'react';
+import '../App.css';
 import {TopAlbumInput} from './TopAlbumInput';
 
 export const TopAlbumInputs = ({ albumNames, handleAlbumNameChange, addAlbumInput }) => {

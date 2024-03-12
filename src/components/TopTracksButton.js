@@ -1,5 +1,6 @@
 // TopTracksButton.js
 import React from 'react';
+import '../App.css';
 
 export const TopTracksButton = ({ onClick, label }) => {
   return (
